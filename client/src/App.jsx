@@ -1,11 +1,12 @@
-import Navbar from './components/Navbar'
+import React from 'react'
+import Navbar from './components/Navbar.jsx'
 import { Route, Routes, useLocation } from 'react-router-dom'
-import Home from './pages/Home'
-import Movies from './pages/Movies'
-import MovieDetails from './pages/MovieDetails'
-import SeatLayout from './pages/SeatLayout'
-import MyBookings from './pages/MyBookings'
-import Favorite from './pages/Favorite'
+import Home from './pages/Home.jsx'
+import Movies from './pages/Movies.jsx'
+import MovieDetails from './pages/MovieDetails.jsx'
+import SeatLayout from './pages/SeatLayout.jsx'
+import MyBookings from './pages/MyBookings.jsx'
+import Favorite from './pages/Favorite.jsx'
 import { Toaster } from 'react-hot-toast'
 import Footer from './components/Footer'
 
@@ -13,7 +14,6 @@ const App = () => {
 
   const isAdminRoute = useLocation().pathname.startsWith('/admin')
 
-  const { user } = useAppContext()
 
   return (
     <>
@@ -27,12 +27,6 @@ const App = () => {
         <Route path='/my-bookings' element={<MyBookings/>} />
 
         <Route path='/favorite' element={<Favorite/>} />
-        <Route path='/admin/*' element={user ? <Layout/> : (
-          <div className='min-h-screen flex justify-center items-center'>
-            <SignIn fallbackRedirectUrl={'/admin'} />
-          </div>
-        )}>
-        </Route>
       </Routes>
        {!isAdminRoute && <Footer />}
     </>
